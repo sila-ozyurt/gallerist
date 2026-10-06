@@ -4,23 +4,13 @@ import com.hediyesilaozyurt.entities.entities.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public interface CustomerRepository extends JpaRepository<Customer,Long> {
 
-    @Query(value = """
-            select * 
-            from gallery_management.customer
-            where username= :username
-            """,nativeQuery = true)
-    Optional<Customer> findByUsername(@Param("username") String username);
-
-
-    @Query(value = """
-            select count(*)>0
-            from gallery_management.customer
-            where username= :username
-            """,nativeQuery = true)
-    boolean existsByUsername(String username);
+    Optional<Customer> findByUserUsername(@Param("username") String username);
+    boolean existsByUserUsername(String username);
 }

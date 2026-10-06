@@ -51,7 +51,8 @@ public class CustomerControllerImpl extends RestBaseController implements ICusto
 
     @PatchMapping(path ="/update/{id}")
     @Override
-    public ResponseEntity<RootEntity<CustomerResponseDto>> update(@PathVariable(name="id") Long id, CustomerUpdateDto request) {
+    public ResponseEntity<RootEntity<CustomerResponseDto>> update(@PathVariable(name="id") Long id,
+                                                                  @RequestBody @Valid CustomerUpdateDto request) {
         return respond(HttpStatus.OK,customerService.update(id,request));
     }
 

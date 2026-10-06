@@ -5,6 +5,7 @@ import com.hediyesilaozyurt.dto.dto.customer.CustomerRequestDto;
 import com.hediyesilaozyurt.dto.dto.customer.CustomerResponseDto;
 import com.hediyesilaozyurt.dto.dto.customer.CustomerUpdateDto;
 import com.hediyesilaozyurt.entities.authEntities.User;
+import com.hediyesilaozyurt.entities.entities.Customer;
 import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
@@ -21,4 +22,9 @@ public interface ICustomerService {
     //Customer Self Operations
     public CustomerResponseDto getMe(User user);
     public CustomerResponseDto updateMe(User user,CustomerUpdateDto request);
+
+    Customer findEntityById(Long id);
+    Customer findEntityByUsername(String username);
+    void saveEntity(Customer customer);
+
 }

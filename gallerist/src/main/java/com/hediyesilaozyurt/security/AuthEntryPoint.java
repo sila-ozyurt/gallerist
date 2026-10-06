@@ -1,4 +1,4 @@
-package com.hediyesilaozyurt.exception.handler;
+package com.hediyesilaozyurt.security;
 
 
 import jakarta.servlet.ServletException;

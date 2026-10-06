@@ -46,7 +46,7 @@ public class CustomerServiceImpl implements ICustomerService {
                 )));
 
         //whether or not user has already a customer
-        if(customerRepository.existsByUsername(user.getUsername())){
+        if(customerRepository.existsByUserUsername(user.getUsername())){
             throw new BaseException(new ErrorMessage(
                     "This user already has a customer record",
                     MessageType.DUPLICATE_ENTRY
@@ -106,7 +106,7 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     @Transactional(readOnly = true)
     public CustomerResponseDto getMe(User user) {
-        return customerRepository.findByUsername(user.getUsername())
+        return customerRepository.findByUserUsername(user.getUsername())
                 .map(customerMapper::toResponse)
                 .orElseThrow(()->new BaseException(new ErrorMessage(
                         "Customer not found",
@@ -116,7 +116,7 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     @Transactional
     public CustomerResponseDto updateMe(User user, CustomerUpdateDto request) {
-        Customer customer=customerRepository.findByUsername(user.getUsername())
+        Customer customer=customerRepository.findByUserUsername(user.getUsername())
                 .orElseThrow(() -> new BaseException(new ErrorMessage(
                         "Customer not found",
                         MessageType.ENTITY_NOT_FOUND)));

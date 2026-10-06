@@ -18,7 +18,7 @@ public class AccountRequestDto {
     private String accountNo;
 
     @NotBlank(message = "iban cannot be null, empty or blank")
-    @Pattern(regexp = "^TR[0-9]{24}]",message = "enter a valid iban format")
+    @Pattern(regexp = "^TR[0-9]{24}$",message = "enter a valid iban format")
     private String iban;
 
     @PositiveOrZero

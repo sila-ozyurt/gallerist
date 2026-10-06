@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
 
         log.error("Base exception occured: {}",exception.getMessage(),exception);
 
-        MessageType messageType=extractMessageType(exception);
+        MessageType messageType=exception.getMessageType();
         HttpStatus status=determineHtppStatus(messageType);
 
         ApiError response= ApiError.builder()
@@ -104,7 +104,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(apiError);
     }
 
-
+    @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiError> handleGeneralException(Exception exception,
                                                            HttpServletRequest request){
         log.error("Unexpected error occured: {}",exception.getMessage());
@@ -117,18 +117,6 @@ public class GlobalExceptionHandler {
                 .hostName(applicationName)
                 .build();
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
-    }
-
-    //determine message type from baseexception
-    private MessageType extractMessageType(BaseException exception){
-        String message=exception.getMessage();
-
-        for(MessageType type: MessageType.values()){
-            if(message!=null && message.startsWith(type.getMessage())){
-                return type;
-            }
-        }
-        return MessageType.INTERNAL_SERVER_ERROR;
     }
 
     //determine http status according to message type for baseexception

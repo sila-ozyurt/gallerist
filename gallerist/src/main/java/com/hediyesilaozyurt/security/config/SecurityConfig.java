@@ -1,6 +1,6 @@
 package com.hediyesilaozyurt.security.config;
 
-import com.hediyesilaozyurt.exception.handler.AuthEntryPoint;
+import com.hediyesilaozyurt.security.AuthEntryPoint;
 import com.hediyesilaozyurt.security.filter.ProfileCompletionFilter;
 import com.hediyesilaozyurt.security.jwt.JwtAuthenticationFilter;
 import com.hediyesilaozyurt.services.authenticationService.impl.CustomUserDetailsServiceImpl;

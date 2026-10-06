@@ -14,7 +14,6 @@ public enum MessageType {
     INTERNAL_SERVER_ERROR("1004","Internal server error occured"),
     UNAUTHORIZED_ACCESS("1005", "Unauthorized access"),
     DUPLICATE_ENTRY("1006", "Record already exists"),
-    TOKEN_IS_EXPIRED("1007","Token is expired, cannot be used");
 
     private final String code;
 
