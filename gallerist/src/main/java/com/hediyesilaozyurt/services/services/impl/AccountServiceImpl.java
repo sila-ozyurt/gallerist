@@ -62,7 +62,7 @@ public class AccountServiceImpl implements IAccountService {
 
     @Override
     @Transactional
-    public Void delete(Long id) {
+    public void delete(Long id) {
         Account account=accountRepository.findById(id)
                 .orElseThrow(() -> new BaseException(
                 new ErrorMessage(
@@ -73,7 +73,6 @@ public class AccountServiceImpl implements IAccountService {
         Customer customer=account.getCustomer();
         customer.removeAccount(account);
         customerService.saveEntity(customer);
-        return null;
     }
 
     @Override
@@ -110,8 +109,8 @@ public class AccountServiceImpl implements IAccountService {
     @Override
     @Transactional
     public AccountResponseDto addMyAccount(User user, AccountRequestDto dto) {
-        Customer customer=customerService.findEntityByUsername(user.getUsername());
-        Account account=accountMapper.toEntity(dto);
+        Customer customer = customerService.findEntityByUsername(user.getUsername());
+        Account account = accountMapper.toEntity(dto);
         customer.addAccount(account);
         customerService.saveEntity(customer);
 
@@ -143,7 +142,7 @@ public class AccountServiceImpl implements IAccountService {
 
     @Override
     @Transactional
-    public Void deleteMyAccount(User user, Long id) {
+    public void deleteMyAccount(User user, Long id) {
         Account account=accountRepository.findById(id)
                 .orElseThrow(() -> new BaseException(
                         new ErrorMessage(
@@ -159,7 +158,6 @@ public class AccountServiceImpl implements IAccountService {
                             MessageType.UNAUTHORIZED_ACCESS
                     )
             );
-
         }
         Customer customer=account.getCustomer();
         customer.removeAccount(account);

@@ -42,6 +42,6 @@ public class AddressRequestDto {
     @NotNull(message = "address type cannot be null")
     private AddressType addressType;
 
-    @NotNull(message = "customer id cannot be null")
+   //admin sends customer doesnt
     private Long customerId;
 }

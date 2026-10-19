@@ -13,7 +13,7 @@ public interface IAccountService {
 
     AccountResponseDto save(AccountRequestDto dto);
     AccountResponseDto findById(Long id);
-    Void delete(Long id);
+    void delete(Long id);
     AccountResponseDto update(Long id, AccountUpdateDto dto);
     PageResponse<AccountResponseDto> findAll(Pageable pageable);
 
@@ -21,5 +21,5 @@ public interface IAccountService {
     List<AccountResponseDto> getMyAccounts(User user);
     AccountResponseDto addMyAccount(User user, AccountRequestDto dto);
     AccountResponseDto updateMyAccount(User user,Long id, AccountUpdateDto dto);
-    Void deleteMyAccount(User user, Long id);
+    void deleteMyAccount(User user, Long id);
 }

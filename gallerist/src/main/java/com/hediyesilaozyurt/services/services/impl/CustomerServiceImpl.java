@@ -126,6 +126,34 @@ public class CustomerServiceImpl implements ICustomerService {
 
         return customerMapper.toResponse(customer);
     }
+
+    @Override
+    @Transactional
+    public void saveEntity(Customer customer) {
+        customerRepository.save(customer);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Customer findEntityById(Long id) {
+        return customerRepository.findById(id)
+                .orElseThrow(()->
+                        new BaseException(new ErrorMessage(
+                                "customer not found with id: ",
+                                MessageType.ENTITY_NOT_FOUND
+                        )));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Customer findEntityByUsername(String username) {
+        return customerRepository.findByUserUsername(username)
+                .orElseThrow(()->new BaseException(new ErrorMessage(
+                        "customer not found",
+                        MessageType.ENTITY_NOT_FOUND
+                )));
+    }
+
 }
 
 
